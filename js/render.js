@@ -18,3 +18,31 @@ function renderPosts (posts) {
         list.append(item);
     }
 }
+
+// 글 상세 페이지 만드는 함수
+function renderPost(post) {
+    document.querySelector("#post-title").textContent = post.title;
+    document.querySelector("#post-meta").textContent = `${post.author} | ${post.createdDatetime}`;
+    document.querySelector("#post-content").textContent = post.content;
+}
+
+function renderComments(comments) {
+    const list = document.querySelector("#comments-list");
+    list.replaceChild();
+    
+    if(comments.length === 0){
+        list.textContent = "등록된 댓글이 없습니다.";
+    }
+    for(const comment of comments) {
+        const item = document.createElement("li");
+
+        const author = document.createElement("strong");
+        author.textContent = comment.author;
+
+        const content = document.createElement("p");
+        content.textContent = comment.content;
+
+        item.append(author, content);
+        list.append(item);
+    }
+}

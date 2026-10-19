@@ -5,7 +5,9 @@
         <title>게시판</title>
         <link rel="stylesheet" href="style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script defer src="js/data.js"></script>
+        <script defer src="js/storage.js"></script>
+        <script defer src="js/render.js"></script>
+        <script defer src="js/detail.js"></script>
     </head>
     <body>
         <header>
@@ -21,20 +23,16 @@
         <main>
             <!-- 메인 영역 -->
              <article>
-                <h1 id="post-title">첫 번째 게시글</h1>
-                <p id="post-meta" class="meta">학생 / 2026-10-03</p>
-                <p id="post-content">첫 번째 게시글 내용입니다.</p>
+                <h1 id="post-title"></h1>
+                <p id="post-meta" class="meta"></p>
+                <p id="post-content"></p>
             </article>
             <a href="index.html">목록으로 돌아가기</a>
             <section id="comments-section">
                 <h2>댓글</h2>
                 <!-- 댓글 목록 영역 -->
-                <ul id="comments-list">
-                    <li>
-                        <strong>학생</strong>
-                        <p>첫 번째 댓글입니다.</p>
-                    </li>
-                </ul>
+                <p id="comment-message"></p> 
+                <ul id="comments-list"></ul>
                     <!-- 댓글 입력창 -->
                     <form id="comment-form">
                         <label>댓글 내용</label>
