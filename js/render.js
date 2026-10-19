@@ -1,5 +1,9 @@
 function renderPosts (posts) {
     const list = document.querySelector("#post-list");
+    
+    // 기존 이미 그려진(렌더링된) 게시글 요소들 모두 제거
+    list.replaceChildren();
+
     if(posts.length === 0) {
         list.textContent = "아직 게시글이 없습니다.";
     }
@@ -12,7 +16,7 @@ function renderPosts (posts) {
 
         const meta = document.createElement("div");
         meta.className = "meta";
-        meta.textContent = `${post.author} | ${post.createdDatetime}`;
+        meta.textContent = `${post.authorNickname} | ${post.createDatetime}`;
 
         item.append(link, meta);
         list.append(item);
@@ -28,8 +32,8 @@ function renderPost(post) {
 
 function renderComments(comments) {
     const list = document.querySelector("#comments-list");
-    list.replaceChild();
-    
+    list.replaceChildren();
+
     if(comments.length === 0){
         list.textContent = "등록된 댓글이 없습니다.";
     }

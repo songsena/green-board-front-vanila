@@ -30,6 +30,9 @@ async function logout() {
         location.href = "login.html";
     } catch (error) {
         alert(error.message);
+    } finally {
+        localStorage.removeItem("accessToken");
+        location.href = "login.html";
     }
 }
 
