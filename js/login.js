@@ -27,6 +27,7 @@ async function login(event) {
 
     // 로컬스토리지에 액세스 토큰 저장
     localStorage.setItem("accessToken", result.data.accessToken);
+    location.href = "index.html";
 } catch (error) {
     message.textContent = error.message;
 }

@@ -1,5 +1,8 @@
 // 게시글 작성 화면 JS
 
+// 로그인 안되어있을 시 로그인 페이지로 리다이렉트
+requireLogin();
+
 const form = document.querySelector("#post-form")
 
 form.addEventListener("submit", function(event) {
