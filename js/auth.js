@@ -23,6 +23,9 @@ async function logout() {
         
         });
         if (!response.ok) {
+        // 토큰 리프레시 기능이 연동 계획에서 제외되어 현재 엑세스 토큰 만료 시 재발급을 위해서는 재 로그인을 해야하는 상황으로
+        // 임시로 로그아웃 실패 시에도 스토리지 내 토큰을 비워 재로그인 가능하게 수정
+        localStorage.removeItem("accessToken");
         throw new Error("로그아웃에 실패했습니다.");
         }
 
@@ -30,9 +33,6 @@ async function logout() {
         location.href = "login.html";
     } catch (error) {
         alert(error.message);
-    } finally {
-        localStorage.removeItem("accessToken");
-        location.href = "login.html";
     }
 }
 
