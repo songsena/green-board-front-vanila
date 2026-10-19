@@ -14,8 +14,28 @@ function requireLogin() {
     return false;
 }
 
+document.querySelector(".logout-button").addEventListener("click", logout)
+
+async function logout() {
+    try {
+        const response = await fetch("http://127.0.0.1:8080/api/user/logout", {
+            method: "POST", headers: {...getAuthHeaders(), "Content-Type": "application/json"}
+        
+        });
+        if (!response.ok) {
+        throw new Error("로그아웃에 실패했습니다.");
+        }
+
+        localStorage.removeItem("accessToken");
+        location.href = "login.html";
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
 // Authorization Header 생성
 function getAuthHeaders() {
+    const accessToken = localStorage.getItem("accessToken");   
     return {
         Authorization: `Bearer ${accessToken}`
     }
