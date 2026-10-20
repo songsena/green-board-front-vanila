@@ -3,16 +3,21 @@ const postId = Number(params.get("id"));
 
 // posts 배열에서 사용자가 누른 게시글 찾기
 async function loadPost() {
+    const message = document.querySelector("#post-message");
+    message.textContent = "게시글 불러오는 중...";
+    const reloadButton = document.querySelector("#retry-post");
     try {
         // 게시글 상세 조회 API 호출
         const post = await apiRequest(`/board/${postId}`);
         renderPost(post);
-        document.querySelector("#post-message").textContent = "";
+        message.textContent = "";
+        reloadButton.disabled = true;
         return true;
     } catch (error) {
         document.querySelector("#post-title").textContent = "게시글 조회 실패";
         document.querySelector("#post-content").textContent = "";
-        document.querySelector("#post-message").textContent = error.message;
+        message.textContent = error.message;
+        reloadButton.hidden = false;
         return false;
     }
 }
@@ -53,6 +58,7 @@ if (requireLogin()) {
 
 // 댓글 작성 폼 submit 시 댓글 추가
 document.querySelector("#comment-form").addEventListener("submit", async function (event) {
+document.querySelector("#retry-post").addEventListener("click", () => {loadPost()});
     event.preventDefault();
     const input = document.querySelector("#comment-content");
     const content = input.value.trim();
